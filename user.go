@@ -42,7 +42,15 @@ func (this *User) Online() {
 }
 
 func (this *User) Offline() {
-	this.server.BroadCast(this, "已下线")
+
+	//用户下线,将用户从onlineMap中删除
+	this.server.mapLock.Lock()
+	delete(this.server.OnlineMap, this.Name)
+	this.server.mapLock.Unlock()
+
+	//广播当前用户上线消息
+	this.server.BroadCast(this, "下线")
+
 }
 
 func (this *User) SendMsg(msg string) {
