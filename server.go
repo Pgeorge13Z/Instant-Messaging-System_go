@@ -100,7 +100,7 @@ func (this *Server) Handler(conn net.Conn) {
 		//当前用户活跃，重置定时器
 		//不做事，进入下一次循环
 
-		case <-time.After(time.Second * 10):
+		case <-time.After(time.Second * 300):
 			//超时，关闭用户
 			user.SendMsg("你被踢了")
 			//关闭user使用的管道
