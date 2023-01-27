@@ -83,6 +83,7 @@ func (this *Server) Handler(conn net.Conn) {
 
 			//提取用户的消息（去除'\n')
 			msg := string(buf[:n-1])
+			//msg := string(buf)
 
 			//将得到的进行处理
 			user.Domsg(msg)
